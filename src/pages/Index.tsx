@@ -419,7 +419,7 @@ function PortfolioSection() {
 }
 
 function BookingModal({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const [form, setForm] = useState({ name: "", phone: "", service: "", date: "", time: "", comment: "" });
+  const [form, setForm] = useState({ name: "", phone: "", address: "", service: "", date: "", time: "", comment: "" });
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -485,6 +485,16 @@ function BookingModal({ open, onClose }: { open: boolean; onClose: () => void })
                     required
                   />
                 </div>
+              </div>
+
+              <div>
+                <label className="section-label text-xs mb-1 block opacity-55">Адрес</label>
+                <input
+                  className="input-cyber text-sm"
+                  placeholder="Ваш адрес"
+                  value={form.address}
+                  onChange={(e) => setForm({ ...form, address: e.target.value })}
+                />
               </div>
 
               <div>
