@@ -421,10 +421,25 @@ function PortfolioSection() {
 function BookingModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [form, setForm] = useState({ name: "", phone: "", address: "", service: "", date: "", time: "", comment: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+    try {
+      await fetch("https://functions.poehali.dev/31a46c07-8325-475d-82f8-691075236db3", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      setSubmitted(true);
+    } catch {
+      setError("Ошибка отправки. Попробуйте ещё раз или позвоните нам.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!open) return null;
@@ -494,6 +509,7 @@ function BookingModal({ open, onClose }: { open: boolean; onClose: () => void })
                   placeholder="Ваш адрес"
                   value={form.address}
                   onChange={(e) => setForm({ ...form, address: e.target.value })}
+                  required
                 />
               </div>
 
@@ -554,8 +570,14 @@ function BookingModal({ open, onClose }: { open: boolean; onClose: () => void })
                 />
               </div>
 
-              <button type="submit" className="btn-cyber-filled w-full mt-2 text-sm py-4">
-                Отправить заявку
+              {error && (
+                <div className="text-xs text-red-400 px-3 py-2" style={{ border: "1px solid rgba(248,113,113,0.3)", background: "rgba(248,113,113,0.05)" }}>
+                  {error}
+                </div>
+              )}
+
+              <button type="submit" className="btn-cyber-filled w-full mt-2 text-sm py-4" disabled={loading}>
+                {loading ? "Отправка..." : "Отправить заявку"}
               </button>
             </form>
           </>
