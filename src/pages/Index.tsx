@@ -625,15 +625,15 @@ function ContactsSection({ onBook }: { onBook: () => void }) {
                 Решаем задачи без выезда. Подключимся удалённо и разберём вашу ситуацию — быстро и конфиденциально.
               </p>
               <button className="btn-cyber-filled text-sm" onClick={onBook}>
-                Выбрать время
+                Ваш адрес: Алексеевка, Благовещенский р-н, с. Алексеевка, д. 43
               </button>
             </div>
 
             <div className="flex flex-col gap-3">
               {[
-                { icon: "Phone", label: "Телефон", val: "+7 (800) 000-00-00" },
-                { icon: "Mail", label: "Email", val: "info@nexus-tech.ru" },
-                { icon: "MapPin", label: "Офис", val: "Москва, Технопарк «Сколково»" },
+                { icon: "Phone", label: "Телефон", val: "+7 906 824 84 83" },
+                { icon: "Mail", label: "Email", val: "skotolikov@mail.ru" },
+                { icon: "MapPin", label: "Адрес", val: "Алексеевка, Центральная улица, дом 43, Благовещенский р-н" },
                 { icon: "Clock", label: "Режим работы", val: "Пн–Пт 9:00–19:00 / Поддержка 24/7" },
               ].map((c) => (
                 <div
