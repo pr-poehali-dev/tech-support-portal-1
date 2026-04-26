@@ -69,7 +69,7 @@ def handler(event: dict, context) -> dict:
     """
 
     smtp_password = os.environ.get("SMTP_PASSWORD", "")
-    sender = "skotolikov@mail.ru"
+    sender = "sava222kusnecov@gmail.com"
     recipient = "skotolikov@mail.ru"
 
     msg = MIMEMultipart("alternative")
@@ -78,7 +78,8 @@ def handler(event: dict, context) -> dict:
     msg["To"] = recipient
     msg.attach(MIMEText(html, "html", "utf-8"))
 
-    with smtplib.SMTP_SSL("smtp.mail.ru", 465) as server:
+    with smtplib.SMTP("smtp.gmail.com", 587) as server:
+        server.starttls()
         server.login(sender, smtp_password)
         server.sendmail(sender, recipient, msg.as_string())
 
