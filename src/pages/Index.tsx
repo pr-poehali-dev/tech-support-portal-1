@@ -127,6 +127,13 @@ function NavBar({ onBook }: { onBook: () => void }) {
           <button className="btn-cyber text-sm py-2 px-6" onClick={onBook}>
             Записаться
           </button>
+          <a
+            href="/admin"
+            className="flex items-center justify-center opacity-30 hover:opacity-70 transition-opacity duration-200"
+            title="Админ-панель"
+          >
+            <Icon name="LayoutDashboard" size={18} style={{ color: "var(--cyan)" }} />
+          </a>
         </nav>
 
         <button className="md:hidden p-2" onClick={() => setMenuOpen(!menuOpen)} style={{ color: "var(--cyan)" }}>
